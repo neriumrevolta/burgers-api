@@ -1,6 +1,6 @@
 # Burgers API 🍔
 
-**Burgers API** is a spin-off of https://punkapi.com/documentation/v2, but instead of for beers - for burgers. The API is built with **Rust**, the **Diesel** framework with a postgres database, and of course, the **Rocket** API framework. 
+**Burgers API** is a spin-off of https://punkapi.com/documentation/v2, but instead of for beers - for burgers. The API is built with **Rust**, the **Diesel** framework with a postgres database, and of course, the **Rocket** web framework. 
 
 **Burgers API** supports all the basic **CRUD** operations, along with a method that returns a random burger. The API also provides functionality to look up burgers by name, it's important to note that the search is case-insensitive and partial, meaning that if we have *"Pulled pork burger"* and *"Classic pork burger"* in our database, searching with *"PO"* will match both.
 
@@ -11,9 +11,9 @@ All of these endpoints will be covered below, but there is also a Postman collec
 ## API Reference:
 
 ### Root Endpoint:
-http://burger-api.ml:8000
+`http://burger-api.ml:8000`
 
-The root endpoint itself does not return anything, but it prefixes all other service endpoints.
+*The root endpoint itself does not return anything, but it prefixes all other service endpoints.*
 
 ### List All Burgers:
 **GET** `http://burger-api.ml:8000/burgers`
@@ -47,7 +47,7 @@ The root endpoint itself does not return anything, but it prefixes all other ser
 *All invalid requests to the API will return the appropriate error.*
 
 ## Running Burgers API locally
-In order to run this repo locally, you'll need the latest version of Rust nightly, as well as an active postgres DB running locally. Use the .env.example to set up your environment variables and after that simply execute cargo run in the project root directory.
+In order to run this repo locally, you'll need the latest version of Rust nightly, as well as an active postgres DB running locally. Use the `.env.example` to set up your environment variables and after that simply run `cargo run` in the project root directory.
 
 ## Testing
-All of the endpoints are tested using Rocket's testing utilities. When you've configured the service locally you could to cargo test and hopefully all 8 tests will pass.
+All of the endpoints are tested using Rocket's testing utilities. When you've configured the service locally you can run `cargo test` and hopefully all 8 tests will pass.
