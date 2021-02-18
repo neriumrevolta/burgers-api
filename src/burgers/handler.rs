@@ -9,8 +9,6 @@ use rocket_contrib::json::Json;
 
 #[get("/")]
 pub fn all(connection: DbConn) -> Result<Json<Vec<Burger>>, Status> {
-    println!("here i am");
-
     burgers::repository::all(&connection)
         .map(|burgers| Json(burgers))
         .map_err(|error| error_status(error))
@@ -32,7 +30,6 @@ pub fn get(id: i32, connection: DbConn) -> Result<Json<Burger>, Status> {
 
 #[post("/", format = "application/json", data = "<burger>")]
 pub fn post(burger: Json<Burger>, connection: DbConn) -> Result<status::Created<Json<Burger>>, Status> {
-    println!("here i am");
     burgers::repository::insert(burger.into_inner(), &connection)
         .map(|burger| burger_created(burger))
         .map_err(|error| error_status(error))
