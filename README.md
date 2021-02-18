@@ -6,7 +6,7 @@
 
 The service is hosted on a **DigitalOcean** droplet, running **Ubuntu** 18.04 (LTS) x64, with **NGINX** as a reverse proxy. It also has an **SSL Certificate** is provided by CertBot.
 
-All of these endpoints will be covered below, but there is also a Postman collection that can help you with testing the API out - https://github.com/arthas168/burgers-api/blob/main/Burgers-API.postman_collection.json
+All of these endpoints will be covered below, but there is also a Postman collection that can help you with testing the API out - https://github.com/arthas168/burgers-api/blob/main/Burgers-API.postman_collection.json, simply download it and import it in your local Postman workspace.
 
 ## API Reference:
 
