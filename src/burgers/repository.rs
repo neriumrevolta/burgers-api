@@ -1,10 +1,11 @@
 #![allow(proc_macro_derive_resolution_fallback)]
 
-use diesel;
-use diesel::prelude::*;
-use crate::schema::burgers;
 use crate::burgers::Burger;
 use crate::burgers::InsertableBurger;
+use crate::schema::burgers;
+use diesel;
+use diesel::prelude::*;
+use rand::prelude::*;
 
 pub fn all(connection: &PgConnection) -> QueryResult<Vec<Burger>> {
     burgers::table.load::<Burger>(&*connection)
@@ -12,6 +13,20 @@ pub fn all(connection: &PgConnection) -> QueryResult<Vec<Burger>> {
 
 pub fn get(id: i32, connection: &PgConnection) -> QueryResult<Burger> {
     burgers::table.find(id).get_result::<Burger>(connection)
+}
+
+pub fn rand(connection: &PgConnection) -> QueryResult<Burger> {
+    let mut rng = rand::thread_rng();
+    let all = burgers::table.load::<Burger>(&*connection);
+
+    match all {
+        Ok(all) => {
+            let len = all.len();
+            let x: usize = rng.gen_range(0..len);
+            return Ok(all[x].clone());
+        },
+        Err(e) => Err(e),
+    }
 }
 
 pub fn insert(burger: InsertableBurger, connection: &PgConnection) -> QueryResult<Burger> {
@@ -27,7 +42,5 @@ pub fn update(id: i32, burger: InsertableBurger, connection: &PgConnection) -> Q
 }
 
 pub fn delete(id: i32, connection: &PgConnection) -> QueryResult<usize> {
-    diesel::delete(burgers::table.find(id))
-        .execute(connection)
+    diesel::delete(burgers::table.find(id)).execute(connection)
 }
-

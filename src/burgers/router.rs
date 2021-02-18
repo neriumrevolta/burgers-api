@@ -10,6 +10,7 @@ pub fn create_routes() {
             routes![
                 burgers::handler::all,
                 burgers::handler::get,
+                burgers::handler::rand,
                 burgers::handler::post,
                 burgers::handler::put,
                 burgers::handler::delete

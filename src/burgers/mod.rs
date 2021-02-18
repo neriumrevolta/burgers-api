@@ -5,7 +5,7 @@ pub mod handler;
 pub mod repository;
 pub mod router;
 
-#[derive(Queryable, AsChangeset, Serialize, Deserialize)]
+#[derive(Queryable, AsChangeset, Serialize, Deserialize, Clone)]
 #[table_name = "burgers"]
 pub struct Burger {
     pub id: i32,

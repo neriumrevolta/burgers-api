@@ -1,12 +1,12 @@
-use crate::connection::DbConn;
-use diesel::result::Error;
-use std::env;
 use crate::burgers;
 use crate::burgers::Burger;
 use crate::burgers::InsertableBurger;
+use crate::connection::DbConn;
+use diesel::result::Error;
 use rocket::http::Status;
 use rocket::response::status;
 use rocket_contrib::json::Json;
+use std::env;
 
 #[get("/")]
 pub fn all(connection: DbConn) -> Result<Json<Vec<Burger>>, Status> {
@@ -18,7 +18,7 @@ pub fn all(connection: DbConn) -> Result<Json<Vec<Burger>>, Status> {
 fn error_status(error: Error) -> Status {
     match error {
         Error::NotFound => Status::NotFound,
-        _ => Status::InternalServerError
+        _ => Status::InternalServerError,
     }
 }
 
@@ -29,8 +29,18 @@ pub fn get(id: i32, connection: DbConn) -> Result<Json<Burger>, Status> {
         .map_err(|error| error_status(error))
 }
 
+#[get("/random")]
+pub fn rand(connection: DbConn) -> Result<Json<Burger>, Status> {
+    burgers::repository::rand(&connection)
+        .map(|burger| Json(burger))
+        .map_err(|error| error_status(error))
+}
+
 #[post("/", format = "application/json", data = "<burger>")]
-pub fn post(burger: Json<InsertableBurger>, connection: DbConn) -> Result<status::Created<Json<Burger>>, Status> {
+pub fn post(
+    burger: Json<InsertableBurger>,
+    connection: DbConn,
+) -> Result<status::Created<Json<Burger>>, Status> {
     burgers::repository::insert(burger.into_inner(), &connection)
         .map(|burger| burger_created(burger))
         .map_err(|error| error_status(error))
@@ -38,8 +48,15 @@ pub fn post(burger: Json<InsertableBurger>, connection: DbConn) -> Result<status
 
 fn burger_created(burger: Burger) -> status::Created<Json<Burger>> {
     status::Created(
-        format!("{host}:{port}/burgers/{id}", host = host(), port = port(), id = burger.id).to_string(),
-        Some(Json(burger)))
+        format!(
+            "{host}:{port}/burgers/{id}",
+            host = host(),
+            port = port(),
+            id = burger.id
+        )
+        .to_string(),
+        Some(Json(burger)),
+    )
 }
 
 fn host() -> String {
@@ -51,7 +68,11 @@ fn port() -> String {
 }
 
 #[put("/<id>", format = "application/json", data = "<burger>")]
-pub fn put(id: i32, burger: Json<InsertableBurger>, connection: DbConn) -> Result<Json<Burger>, Status> {
+pub fn put(
+    id: i32,
+    burger: Json<InsertableBurger>,
+    connection: DbConn,
+) -> Result<Json<Burger>, Status> {
     burgers::repository::update(id, burger.into_inner(), &connection)
         .map(|burger| Json(burger))
         .map_err(|error| error_status(error))
@@ -63,6 +84,6 @@ pub fn delete(id: i32, connection: DbConn) -> Result<Status, Status> {
         Ok(_) => burgers::repository::delete(id, &connection)
             .map(|_| Status::NoContent)
             .map_err(|error| error_status(error)),
-        Err(error) => Err(error_status(error))
+        Err(error) => Err(error_status(error)),
     }
 }
