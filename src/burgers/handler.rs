@@ -29,6 +29,13 @@ pub fn get(id: i32, connection: DbConn) -> Result<Json<Burger>, Status> {
         .map_err(|error| error_status(error))
 }
 
+#[get("/?name&<name>")]
+pub fn find_by_name(name: String, connection: DbConn) -> Result<Json<Burger>, Status> {
+    burgers::repository::find_by_name(name, &connection)
+        .map(|burger| Json(burger))
+        .map_err(|error| error_status(error))
+}
+
 #[get("/random")]
 pub fn rand(connection: DbConn) -> Result<Json<Burger>, Status> {
     burgers::repository::rand(&connection)
