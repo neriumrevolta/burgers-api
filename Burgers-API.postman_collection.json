@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "605487ee-3924-465f-922d-2fe50157de49",
+		"name": "Burgers API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":1,\n    \"name\":\"big tasty\",\n    \"description\":\"wow\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://burger-api.ml:8000/burgers",
+					"protocol": "http",
+					"host": [
+						"burger-api",
+						"ml"
+					],
+					"port": "8000",
+					"path": [
+						"burgers"
+					]
+				},
+				"description": "Returns all burgers in the database"
+			},
+			"response": []
+		},
+		{
+			"name": "Get - ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://burger-api.ml:8000/burgers/11",
+					"protocol": "http",
+					"host": [
+						"burger-api",
+						"ml"
+					],
+					"port": "8000",
+					"path": [
+						"burgers",
+						"11"
+					]
+				},
+				"description": "Return a specific burger by its ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Classic beef burger\",\n    \"description\": \"White bread, beef, veggies, spices\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://burger-api.ml:8000/burgers",
+					"protocol": "http",
+					"host": [
+						"burger-api",
+						"ml"
+					],
+					"port": "8000",
+					"path": [
+						"burgers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update - ID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Pork Burger\",\n    \"description\": \"Cheese, spices, pickles\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://burger-api.ml:8000/burgers/3",
+					"protocol": "http",
+					"host": [
+						"burger-api",
+						"ml"
+					],
+					"port": "8000",
+					"path": [
+						"burgers",
+						"3"
+					]
+				},
+				"description": "Updates a burger by a given burger id"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete - ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://burger-api.ml:8000/burgers/1",
+					"protocol": "http",
+					"host": [
+						"burger-api",
+						"ml"
+					],
+					"port": "8000",
+					"path": [
+						"burgers",
+						"1"
+					]
+				},
+				"description": "Deletes a burger by a given burger id"
+			},
+			"response": []
+		},
+		{
+			"name": "Random",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://burger-api.ml:8000/burgers/random",
+					"protocol": "http",
+					"host": [
+						"burger-api",
+						"ml"
+					],
+					"port": "8000",
+					"path": [
+						"burgers",
+						"random"
+					]
+				},
+				"description": "Returns a random burger"
+			},
+			"response": []
+		},
+		{
+			"name": "Find by name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://burger-api.ml:8000/burgers/name/pork",
+					"protocol": "http",
+					"host": [
+						"burger-api",
+						"ml"
+					],
+					"port": "8000",
+					"path": [
+						"burgers",
+						"name",
+						"pork"
+					]
+				},
+				"description": "Searches for a burger by a given name"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
