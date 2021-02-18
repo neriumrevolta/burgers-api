@@ -15,19 +15,18 @@ pub fn get(id: i32, connection: &PgConnection) -> QueryResult<Burger> {
     burgers::table.find(id).get_result::<Burger>(connection)
 }
 
-pub fn find_by_name(name: String, connection: &PgConnection) -> QueryResult<Burger> {
+pub fn find_by_name(name: String, connection: &PgConnection) -> QueryResult<Vec<Burger>> {
     let all = burgers::table.load::<Burger>(&*connection);
-
     match all {
         Ok(all) => {
-            let first_matching = all
+            let matches = all
                 .into_iter()
-                .filter(|b| b.name == name)
-                .collect::<Vec<Burger>>()
-                .first()
-                .unwrap()
-                .clone();
-            return Ok(first_matching);
+                .filter(|b| {
+                    b.name.to_lowercase() == name.to_lowercase()
+                        || b.name.to_lowercase().contains(name.to_lowercase().as_str())
+                })
+                .collect::<Vec<Burger>>();
+            return Ok(matches);
         }
         Err(e) => Err(e),
     }
