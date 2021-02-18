@@ -51,7 +51,7 @@ Returns `200 Ok` when successful, along with the updated Burger object.
 *All invalid requests to the API will return the appropriate error.*
 
 ## Running Burgers API locally
-In order to run this repo locally, you'll need the latest version of Rust nightly, as well as an active postgres DB running locally. Use the `.env.example` to set up your environment variables and after that simply run `cargo run` in the project root directory.
+In order to run this repo locally, you'll need the latest version of **Rust nightly**, as well as an active **Postgres DB** running locally. Use the `.env.example` to set up your environment variables and after that simply run `cargo run` in the project root directory.
 
 ## Testing
 All of the endpoints are tested using Rocket's testing utilities. When you've configured the service locally you can run `cargo test` and hopefully all 8 tests will pass.
