@@ -46,9 +46,9 @@ Returns `200 Ok` when successful, along with the updated Burger object.
 **GET** `http://burger-api.ml:8000/burgers/random` - when successful, returns `200 Ok` along with one random Burger object. For reference on how that works: https://crates.io/crates/rand
 
 ### Find Bugers by Name:
-**GET** `http://burger-api.ml:8000/burgers/name/<name>` 
+**GET** `http://burger-api.ml:8000/burgers/name/<name>` - when successful, returns `200 Ok` along with a list of Burger objects, the names of which partially (and case-insensitively) match the name given in the request.
   
-*All invalid requests to the API will return the appropriate error.* - when successful, returns `200 Ok` along with a list of Burger objects, the names of which partially (and case-insensitively) match the name given in the request.
+*All invalid requests to the API will return the appropriate error.*
 
 ## Running Burgers API locally
 In order to run this repo locally, you'll need the latest version of Rust nightly, as well as an active postgres DB running locally. Use the `.env.example` to set up your environment variables and after that simply run `cargo run` in the project root directory.
