@@ -20,7 +20,7 @@ pub fn insert(burger: InsertableBurger, connection: &PgConnection) -> QueryResul
         .get_result(connection)
 }
 
-pub fn update(id: i32, burger: Burger, connection: &PgConnection) -> QueryResult<Burger> {
+pub fn update(id: i32, burger: InsertableBurger, connection: &PgConnection) -> QueryResult<Burger> {
     diesel::update(burgers::table.find(id))
         .set(&burger)
         .get_result(connection)

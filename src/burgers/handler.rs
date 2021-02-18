@@ -51,7 +51,7 @@ fn port() -> String {
 }
 
 #[put("/<id>", format = "application/json", data = "<burger>")]
-pub fn put(id: i32, burger: Json<Burger>, connection: DbConn) -> Result<Json<Burger>, Status> {
+pub fn put(id: i32, burger: Json<InsertableBurger>, connection: DbConn) -> Result<Json<Burger>, Status> {
     burgers::repository::update(id, burger.into_inner(), &connection)
         .map(|burger| Json(burger))
         .map_err(|error| error_status(error))
