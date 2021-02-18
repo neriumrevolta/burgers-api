@@ -12,3 +12,10 @@ pub struct Burger {
     pub name: String,
     pub description: String,
 }
+
+#[derive(Insertable, Queryable, AsChangeset, Serialize, Deserialize)]
+#[table_name = "burgers"]
+pub struct InsertableBurger {
+    name: String,
+    description: String,
+}

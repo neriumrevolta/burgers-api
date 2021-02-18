@@ -4,6 +4,7 @@ use diesel;
 use diesel::prelude::*;
 use crate::schema::burgers;
 use crate::burgers::Burger;
+use crate::burgers::InsertableBurger;
 
 pub fn all(connection: &PgConnection) -> QueryResult<Vec<Burger>> {
     burgers::table.load::<Burger>(&*connection)
@@ -13,9 +14,9 @@ pub fn get(id: i32, connection: &PgConnection) -> QueryResult<Burger> {
     burgers::table.find(id).get_result::<Burger>(connection)
 }
 
-pub fn insert(burger: Burger, connection: &PgConnection) -> QueryResult<Burger> {
+pub fn insert(burger: InsertableBurger, connection: &PgConnection) -> QueryResult<Burger> {
     diesel::insert_into(burgers::table)
-        .values(&InsertableBurger::from_burger(burger))
+        .values(burger)
         .get_result(connection)
 }
 
@@ -30,19 +31,3 @@ pub fn delete(id: i32, connection: &PgConnection) -> QueryResult<usize> {
         .execute(connection)
 }
 
-#[derive(Insertable)]
-#[table_name = "burgers"]
-struct InsertableBurger {
-    name: String,
-    description: String,
-}
-
-impl InsertableBurger {
-
-    fn from_burger(burger: Burger) -> InsertableBurger {
-        InsertableBurger {
-            name: burger.name,
-            description: burger.description,
-        }
-    }
-}

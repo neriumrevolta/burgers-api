@@ -3,6 +3,7 @@ use diesel::result::Error;
 use std::env;
 use crate::burgers;
 use crate::burgers::Burger;
+use crate::burgers::InsertableBurger;
 use rocket::http::Status;
 use rocket::response::status;
 use rocket_contrib::json::Json;
@@ -29,7 +30,7 @@ pub fn get(id: i32, connection: DbConn) -> Result<Json<Burger>, Status> {
 }
 
 #[post("/", format = "application/json", data = "<burger>")]
-pub fn post(burger: Json<Burger>, connection: DbConn) -> Result<status::Created<Json<Burger>>, Status> {
+pub fn post(burger: Json<InsertableBurger>, connection: DbConn) -> Result<status::Created<Json<Burger>>, Status> {
     burgers::repository::insert(burger.into_inner(), &connection)
         .map(|burger| burger_created(burger))
         .map_err(|error| error_status(error))
