@@ -23,13 +23,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://burger-api.ml:8000/burgers",
+					"raw": "http://burger-api.ml/burgers",
 					"protocol": "http",
 					"host": [
 						"burger-api",
 						"ml"
 					],
-					"port": "8000",
 					"path": [
 						"burgers"
 					]
@@ -44,13 +43,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://burger-api.ml:8000/burgers/11",
+					"raw": "http://burger-api.ml/burgers/11",
 					"protocol": "http",
 					"host": [
 						"burger-api",
 						"ml"
 					],
-					"port": "8000",
 					"path": [
 						"burgers",
 						"11"
@@ -75,13 +73,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://burger-api.ml:8000/burgers",
+					"raw": "http://burger-api.ml/burgers",
 					"protocol": "http",
 					"host": [
 						"burger-api",
 						"ml"
 					],
-					"port": "8000",
 					"path": [
 						"burgers"
 					]
@@ -96,7 +93,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Pork Burger\",\n    \"description\": \"Cheese, spices, pickles\"\n}",
+					"raw": "{\n    \"name\": \"Veggie burger\",\n    \"description\": \"Cheese, spices, pickles, tofu\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -104,16 +101,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://burger-api.ml:8000/burgers/3",
+					"raw": "http://burger-api.ml/burgers/10",
 					"protocol": "http",
 					"host": [
 						"burger-api",
 						"ml"
 					],
-					"port": "8000",
 					"path": [
 						"burgers",
-						"3"
+						"10"
 					]
 				},
 				"description": "Updates a burger by a given burger id"
@@ -126,16 +122,15 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://burger-api.ml:8000/burgers/1",
+					"raw": "http://burger-api.ml/burgers/11",
 					"protocol": "http",
 					"host": [
 						"burger-api",
 						"ml"
 					],
-					"port": "8000",
 					"path": [
 						"burgers",
-						"1"
+						"11"
 					]
 				},
 				"description": "Deletes a burger by a given burger id"
@@ -148,13 +143,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://burger-api.ml:8000/burgers/random",
+					"raw": "http://burger-api.ml/burgers/random",
 					"protocol": "http",
 					"host": [
 						"burger-api",
 						"ml"
 					],
-					"port": "8000",
 					"path": [
 						"burgers",
 						"random"
@@ -170,13 +164,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://burger-api.ml:8000/burgers/name/pork",
+					"raw": "http://burger-api.ml/burgers/name/pork",
 					"protocol": "http",
 					"host": [
 						"burger-api",
 						"ml"
 					],
-					"port": "8000",
 					"path": [
 						"burgers",
 						"name",
