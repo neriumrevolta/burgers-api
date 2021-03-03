@@ -1,4 +1,4 @@
-## NB! The url isn't live atm because I really didn't want to pay DigitalOcean just to keep it alive :D
+## NB! The url isn't working atm because I really didn't want to pay DigitalOcean just to keep it alive :D
 
 # Burgers API 🍔
 
