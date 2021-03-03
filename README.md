@@ -1,3 +1,5 @@
+NB The url isn't live atm because I really didn't want to pay DigitalOcean just to keep it alive :D
+
 # Burgers API 🍔
 
 **Burgers API** is a spin-off of https://punkapi.com/documentation/v2, but instead of for beers - for burgers. The API is built with **Rust**, the **Diesel** framework with a postgres database, and of course, the **Rocket** web framework. 
