@@ -57,3 +57,4 @@ In order to run this repo locally, you'll need the latest version of **Rust nigh
 
 ## Testing
 All of the endpoints are tested using Rocket's testing utilities. When you've configured the service locally you can run `cargo test` and hopefully all 8 tests will pass.
+# questions-api
